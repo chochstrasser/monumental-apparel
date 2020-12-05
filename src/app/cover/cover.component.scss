@@ -1,0 +1,126 @@
+.parallax-container {
+  position: relative;
+}
+
+.desktop-picture {
+  /* The image used */
+  background: url(https://d2j6dbq0eux0bg.cloudfront.net/startersite/images/40749019/1606614272210.jpg);
+
+  /* Full height */
+  height: 100%;
+
+  /* Full width */
+  width: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -999;
+}
+
+.cover-content {
+  min-height: calc(var(--vh, 1vh) * 100);
+  padding: 2rem 2.5rem 0 2.5rem;
+}
+
+p {
+  font-size: 2rem;
+  font-weight: 100;
+  color: #ffffff;
+  line-height: normal;
+}
+
+.title-wrapper {
+  max-width: 50%;
+  margin-bottom: 2.5rem;
+}
+
+.title {
+  font-size: 7vw;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: normal;
+
+  @media screen and (max-width: 990px) {
+    line-height: 4.05rem;
+  }
+
+  @media screen and (max-width: 700px) {
+    line-height: 3.05rem;
+  }
+}
+
+.mat-button.mat-white {
+  color: #ffffff;
+}
+
+.mat-button.mat-dark {
+  background: #333333;
+  color: #ffffff;
+  font-size: 1.4rem;
+  padding: 0.3rem 1.6rem;
+}
+
+.overlay {
+  position: absolute;
+  z-index: -20;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+    45deg,
+    rgba(0, 73, 97, 0.5),
+    rgba(171, 44, 82, 0.5)
+  );
+}
+
+.footer {
+  text-align: center;
+
+  button {
+    font-size: 2.25rem;
+    font-weight: 100;
+    align-self: flex-end;
+    animation-duration: 2.3s;
+    animation-iteration-count: infinite;
+    margin: 0 auto 0 auto;
+    transform-origin: bottom;
+    width: 200px;
+    animation-name: bounce;
+    animation-timing-function: cubic-bezier(0.28, 0.84, 0.42, 1);
+  }
+  @keyframes bounce {
+    0% {
+      transform: scale(1, 1) translateY(0);
+    }
+    10% {
+      transform: scale(1.1, 0.9) translateY(0);
+    }
+    30% {
+      transform: scale(0.9, 1.1) translateY(-100px);
+    }
+    50% {
+      transform: scale(1.05, 0.95) translateY(0);
+    }
+    57% {
+      transform: scale(1, 1) translateY(-7px);
+    }
+    64% {
+      transform: scale(1, 1) translateY(0);
+    }
+    100% {
+      transform: scale(1, 1) translateY(0);
+    }
+  }
+}
+
+.rotate {
+  transform: rotate(90deg);
+}
