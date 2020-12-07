@@ -26,6 +26,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatRadioModule } from '@angular/material/radio';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -34,17 +36,9 @@ import { AuthService } from './services/auth.service';
 import { AccountOrdersComponent } from './account-orders/account-orders.component';
 import { AccountBagComponent } from './account-bag/account-bag.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
-
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: 'AIzaSyAFJnTG5xYYJlQbsyCrDisXOtfIRc3agJ4',
-  authDomain: 'monumental-apperal.firebaseapp.com',
-  projectId: 'monumental-apperal',
-  storageBucket: 'monumental-apperal.appspot.com',
-  messagingSenderId: '107837033039',
-  appId: '1:107837033039:web:b2ee79d90e84a34fa1783a',
-  measurementId: 'G-80MGP85KHM',
-};
+import { environment } from 'src/environments/environment';
+import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +58,8 @@ const firebaseConfig = {
     AccountOrdersComponent,
     AccountBagComponent,
     ProductDetailComponent,
+    LoginComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -79,7 +75,9 @@ const firebaseConfig = {
     MatToolbarModule,
     MatFormFieldModule,
     MatInputModule,
-    AngularFireModule.initializeApp(firebaseConfig),
+    MatSnackBarModule,
+    MatRadioModule,
+    AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
   ],
   providers: [AuthService],
