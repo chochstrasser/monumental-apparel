@@ -4,33 +4,13 @@ section {
   max-width: 70rem;
   margin: 0 auto;
 
-  .mat-button.logo {
+  .mat-button {
     display: block;
     margin: 0 auto;
 
     img {
       width: 5rem;
     }
-  }
-}
-
-.mat-display-1 {
-  margin-bottom: 0;
-}
-
-.breadcrumb {
-  .mat-flat-button {
-    padding: 0;
-    min-width: 0;
-    color: #aaaaaa;
-
-    &:hover {
-      color: blue;
-    }
-  }
-  span {
-    color: #aaaaaa;
-    margin: 0.5rem;
   }
 }
 
@@ -49,8 +29,4 @@ form {
   display: block;
   max-width: 20rem;
   margin: 0 auto;
-}
-
-.error {
-  color: #d45f5f;
 }

@@ -1,28 +1,10 @@
 <div class="flex-cards">
-  <mat-card>
-    <button mat-button [routerLink]="'product/UintahLongSleeveShirt'">
-      <img
-        mat-card-image
-        src="https://d2j6dbq0eux0bg.cloudfront.net/images/40749019/1812651321.jpg"
-        alt="Uintah - Long Sleeve Shirt"
-      />
+  <mat-card *ngFor="let product of products; index as i">
+    <button mat-button [routerLink]="['/product', product.path]">
+      <img mat-card-image src="{{ product.image }}" alt="{{ product.name }}" />
       <mat-card-actions>
-        <div class="card-title">Uintah - Long Sleeve Shirt</div>
-        <div>$24.95</div>
-      </mat-card-actions>
-    </button>
-  </mat-card>
-
-  <mat-card>
-    <button mat-button [routerLink]="'product/SonoraLongSleeveShirt'">
-      <img
-        mat-card-image
-        src="https://d2j6dbq0eux0bg.cloudfront.net/images/40749019/1812605572.jpg"
-        alt="Sonora - Long Sleeve Shirt"
-      />
-      <mat-card-actions>
-        <div class="card-title">Sonora - Long Sleeve Shirt</div>
-        <div>$24.95</div>
+        <div class="card-title">{{ product.name }}</div>
+        <div>${{ product.price }}</div>
       </mat-card-actions>
     </button>
   </mat-card>

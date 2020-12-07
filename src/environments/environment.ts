@@ -3,7 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: 'AIzaSyAFJnTG5xYYJlQbsyCrDisXOtfIRc3agJ4',
+    authDomain: 'monumental-apperal.firebaseapp.com',
+    projectId: 'monumental-apperal',
+    storageBucket: 'monumental-apperal.appspot.com',
+    messagingSenderId: '107837033039',
+    appId: '1:107837033039:web:b2ee79d90e84a34fa1783a',
+    measurementId: 'G-80MGP85KHM',
+  },
 };
 
 /*

@@ -1,0 +1,20 @@
+<section>
+  <button mat-button [routerLink]="'/'">
+    <img
+      src="https://d2j6dbq0eux0bg.cloudfront.net/images/40749019/1803175281.jpg"
+    />
+  </button>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput type="text" formControlName="email" />
+    </mat-form-field>
+    <br />
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" formControlName="password" />
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit">Sign-In</button>
+  </form>
+</section>
