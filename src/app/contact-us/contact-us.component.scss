@@ -1,0 +1,55 @@
+section {
+  height: 100%;
+  background: #ffffff;
+  padding: 32px 16px;
+  margin: 0 auto;
+
+  .mat-icon {
+    vertical-align: bottom;
+  }
+
+  > * {
+    text-align: center;
+  }
+}
+
+.mat-button {
+  color: blue;
+  font-weight: 100;
+
+  .mat-icon {
+    color: #333333;
+  }
+}
+
+.mat-h3 {
+  margin: 2rem 0 0.5rem 0;
+}
+
+@mixin variable {
+  width: 1.235rem;
+  height: 1.235rem;
+  margin: 0.235rem;
+  display: inline-flex;
+  background-size: cover;
+}
+
+[aria-label="instagram"] {
+  @include variable;
+  background-image: url(/assets/instagram.svg);
+}
+
+[aria-label="facebook"] {
+  @include variable;
+  background-image: url(/assets/facebook.svg);
+}
+
+[aria-label="twitter"] {
+  @include variable;
+  background-image: url(/assets/twitter.svg);
+}
+
+[aria-label="pinterest"] {
+  @include variable;
+  background-image: url(/assets/pinterest.png);
+}

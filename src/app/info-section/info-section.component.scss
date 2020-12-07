@@ -1,0 +1,30 @@
+section {
+  height: 100%;
+  background: #ffffff;
+  padding: 32px 16px;
+  max-width: 45rem;
+  margin: 0 auto;
+
+  .mat-button {
+    display: block;
+    margin: 4rem auto;
+
+    img {
+      width: 5rem;
+    }
+  }
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 400;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+p {
+  font-size: 1rem;
+  font-weight: 100;
+  line-height: 1.5rem;
+  text-align: left;
+}

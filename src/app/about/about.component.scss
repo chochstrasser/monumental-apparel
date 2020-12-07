@@ -1,0 +1,33 @@
+@import "../app.component.scss";
+
+.mat-title {
+  text-align: center;
+  color: #333333;
+  font-size: 1.75rem;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap-reverse;
+  width: 100%;
+  padding: 0 3rem;
+
+  p {
+    max-width: 36rem;
+    line-height: 2rem;
+  }
+
+  img {
+    border-radius: 100%;
+    width: 10rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .center > div {
+    text-align: center;
+  }
+  .border-bottom {
+    margin-bottom: 1rem;
+  }
+}
