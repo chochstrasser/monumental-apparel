@@ -1,0 +1,39 @@
+section {
+  height: 100%;
+  padding: 32px 16px;
+  max-width: 70rem;
+  margin: 0 auto;
+
+  .mat-button {
+    display: block;
+    margin: 0 auto 3rem auto;
+
+    img {
+      width: 5rem;
+    }
+  }
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+
+  @media (max-width: 40rem) {
+    display: block;
+  }
+
+  app-product-gallery {
+    width: 58%;
+
+    @media (max-width: 40rem) {
+      width: 100%;
+    }
+  }
+  app-product-detail {
+    width: 32%;
+
+    @media (max-width: 40rem) {
+      width: 100%;
+    }
+  }
+}
