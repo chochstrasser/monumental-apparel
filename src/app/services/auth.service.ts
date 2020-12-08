@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  user$: Observable<any>;
+  user$: any;
 
-  constructor(private auth: AngularFireAuth, private router: Router) {
-    this.user$ = this.auth.authState;
+  constructor(private auth: AngularFireAuth) {}
+
+  async sendEmailVerification() {
+    await (await this.auth.currentUser)?.sendEmailVerification();
   }
 
   async login(email: string, password: string) {
@@ -18,13 +18,35 @@ export class AuthService {
     this.updateUserData(result);
   }
 
-  logout() {
-    this.auth.signOut();
-    console.log('user is now signed out');
+  async logout() {
+    this.user$ = null;
+    localStorage.removeItem('user');
+    await this.auth.signOut();
   }
 
-  updateUserData(user: any) {
-    this.user$ = user;
-    console.log('updated user data:', this.user$);
+  updateUserData(authUser: any) {
+    this.user$ = {
+      uid: authUser.user.uid,
+      email: authUser.user.email,
+      displayName: authUser.user.displayName,
+      photoURL: authUser.user.photoURL,
+      phoneNumber: authUser.user.phoneNumber,
+      emailVerified: authUser.user.emailVerified,
+    };
+    localStorage.setItem('user', JSON.stringify(this.user$));
+  }
+
+  getCurrentUser() {
+    // this.user$ = JSON.parse(localStorage.getItem('user') || '{}');
+    return this.isAuthenticated() ? this.user$ : null;
+  }
+
+  isEmailVerified() {
+    return this.isAuthenticated() ? this.user$.emailVerified : false;
+  }
+
+  isAuthenticated(): any {
+    this.user$ = JSON.parse(localStorage.getItem('user') || '{}');
+    return !!this.user$.uid;
   }
 }

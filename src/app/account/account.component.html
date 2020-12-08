@@ -7,8 +7,19 @@
     <button mat-flat-button [routerLink]="'/account/settings'">Account</button>
   </div>
 
-  <div *ngIf="isLoggedIn; then thenBlock; else elseBlock"></div>
+  <div *ngIf="isAuthenticated; then thenBlock; else elseBlock"></div>
   <ng-template #thenBlock>
+    <div>Name: {{ userData.displayName }}</div>
+    <div>Photo URL: {{ userData.photoURL }}</div>
+    <div>Phone: {{ userData.phoneNumber }}</div>
+    <div>Email: {{ userData.email }}</div>
+
+    <button mat-flat-button *ngIf="!isEmailVerified" (click)="verifyEmail()">
+      Verify Email
+    </button>
+
+    <app-account-bag></app-account-bag>
+    <app-account-orders></app-account-orders>
     <app-logout></app-logout>
   </ng-template>
   <ng-template #elseBlock>
