@@ -1,15 +1,9 @@
-<section>
+<div>
   <div class="mat-display-1">{{ product.name }}</div>
 
   <div class="breadcrumb">
     <button mat-flat-button [routerLink]="'/'">Back to catalog</button>
   </div>
-
-  <button mat-button [routerLink]="'/'">
-    <img
-      src="https://d2j6dbq0eux0bg.cloudfront.net/images/40749019/1803175281.jpg"
-    />
-  </button>
 
   <div class="mat-display-2">${{ product.price }}</div>
 
@@ -18,6 +12,7 @@
     aria-labelledby="size-radio-group-label"
     class="size-radio-group"
     [(ngModel)]="selectedSize"
+    color="primary"
   >
     <mat-radio-button
       class="size-radio-button"
@@ -33,6 +28,7 @@
     aria-labelledby="color-radio-group-label"
     class="color-radio-group"
     [(ngModel)]="selectedColor"
+    color="primary"
   >
     <mat-radio-button
       class="color-radio-button"
@@ -43,11 +39,11 @@
     </mat-radio-button>
   </mat-radio-group>
 
-  In stock
+  <div class="mat-body">In stock</div>
 
   <button mat-raised-button color="primary">Add to bag</button>
 
-  Product Details
+  <div class="mat-body-2">Product Details</div>
   <p>{{ product.description }}</p>
 
   <p>
@@ -56,4 +52,4 @@
   </p>
 
   <div>Share this product with your friends</div>
-</section>
+</div>

@@ -1,0 +1,15 @@
+.mat-tab-group {
+  min-height: 100%;
+  justify-content: space-around;
+}
+
+.expandedImage {
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+}
+
+.thumbnailImage {
+  height: 10rem;
+  width: unset;
+}

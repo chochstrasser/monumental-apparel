@@ -28,6 +28,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -39,6 +40,8 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { environment } from 'src/environments/environment';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
+import { ProductGalleryComponent } from './product-gallery/product-gallery.component';
+import { ProductComponent } from './product/product.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +63,8 @@ import { LogoutComponent } from './logout/logout.component';
     ProductDetailComponent,
     LoginComponent,
     LogoutComponent,
+    ProductGalleryComponent,
+    ProductComponent,
   ],
   imports: [
     BrowserModule,
@@ -77,6 +82,7 @@ import { LogoutComponent } from './logout/logout.component';
     MatInputModule,
     MatSnackBarModule,
     MatRadioModule,
+    MatTabsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
   ],

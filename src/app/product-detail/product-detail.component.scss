@@ -8,24 +8,12 @@
   margin: 0.4rem 0;
 }
 
-section {
-  height: 100%;
-  padding: 32px 16px;
-  max-width: 70rem;
-  margin: 0 auto;
-
-  .mat-button {
-    display: block;
-    margin: 0 auto;
-
-    img {
-      width: 5rem;
-    }
-  }
-}
-
 .mat-display-1 {
   margin-bottom: 0;
+}
+
+.mat-display-2 {
+  margin-bottom: 1rem;
 }
 
 .breadcrumb {
@@ -42,4 +30,10 @@ section {
     color: #aaaaaa;
     margin: 0.5rem;
   }
+}
+
+.mat-raised-button {
+  display: block;
+  width: 100%;
+  margin: 1rem auto;
 }

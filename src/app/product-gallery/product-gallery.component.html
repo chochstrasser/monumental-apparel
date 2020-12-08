@@ -1,0 +1,12 @@
+<mat-tab-group headerPosition="below" dynamicHeight>
+  <mat-tab *ngFor="let image of product.images">
+    <ng-template mat-tab-label>
+      <img
+        class="thumbnailImage"
+        src="{{ image.path }}"
+        alt="{{ image.name }}"
+      />
+    </ng-template>
+    <img class="expandedImage" src="{{ image.path }}" alt="{{ image.name }}" />
+  </mat-tab>
+</mat-tab-group>

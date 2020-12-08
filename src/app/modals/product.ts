@@ -5,7 +5,8 @@ export class Product {
     name: string,
     price: number,
     image: string,
-    description: string
+    description: string,
+    images: Array<any>
   ) {
     this.productID = productID;
     this.path = path;
@@ -13,6 +14,7 @@ export class Product {
     this.price = price;
     this.image = image;
     this.description = description;
+    this.images = images;
   }
 
   productID?: number;
@@ -21,4 +23,5 @@ export class Product {
   price?: number;
   image?: string;
   description?: string;
+  images?: Array<any>;
 }
