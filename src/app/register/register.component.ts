@@ -4,19 +4,19 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from '../services/auth.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss'],
 })
-export class LoginComponent implements OnInit {
-  loginForm;
+export class RegisterComponent implements OnInit {
+  registerForm;
 
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
     private _snackBar: MatSnackBar
   ) {
-    this.loginForm = this.formBuilder.group({
+    this.registerForm = this.formBuilder.group({
       email: '',
       password: '',
     });
@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
   async onSubmit(userData: any) {
     try {
       await this.authService.login(userData.email, userData.password);
-      this.loginForm.reset();
+      this.registerForm.reset();
       window.location.reload();
     } catch (error) {
       this.openSnackBar(error.message, 'close');

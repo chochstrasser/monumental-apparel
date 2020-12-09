@@ -1,4 +1,4 @@
-<div class="flex-cards">
+<div id="store" class="flex-cards">
   <mat-card *ngFor="let product of products; index as i">
     <button mat-button [routerLink]="['/product', product.path]">
       <img mat-card-image src="{{ product.image }}" alt="{{ product.name }}" />

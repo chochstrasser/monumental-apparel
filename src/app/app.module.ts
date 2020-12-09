@@ -42,6 +42,7 @@ import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { ProductGalleryComponent } from './product-gallery/product-gallery.component';
 import { ProductComponent } from './product/product.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { ProductComponent } from './product/product.component';
     LogoutComponent,
     ProductGalleryComponent,
     ProductComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
