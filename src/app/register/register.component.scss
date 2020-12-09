@@ -14,6 +14,26 @@ section {
   }
 }
 
+.mat-display-1 {
+  margin-bottom: 0;
+}
+
+.breadcrumb {
+  .mat-flat-button {
+    padding: 0;
+    min-width: 0;
+    color: #aaaaaa;
+
+    &:hover {
+      color: blue;
+    }
+  }
+  span {
+    color: #aaaaaa;
+    margin: 0.5rem;
+  }
+}
+
 form {
   text-align: center;
   margin-top: 2rem;
@@ -31,9 +51,12 @@ form {
   margin: 0 auto;
 }
 
-.mat-button#register {
-  width: 100%;
-  display: block;
-  max-width: 20rem;
+#login {
   margin: 1rem auto;
+
+  .mat-button {
+    width: 100%;
+    display: block;
+    max-width: 20rem;
+  }
 }

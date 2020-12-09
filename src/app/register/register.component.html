@@ -1,0 +1,36 @@
+<section>
+  <div class="mat-display-1">Sign Up</div>
+
+  <div class="breadcrumb">
+    <button mat-flat-button [routerLink]="'/'">Store</button>
+    <span class="mat-caption">/</span>
+    <button mat-flat-button [routerLink]="'/account/settings'">Account</button>
+  </div>
+  <section>
+    <button mat-button [routerLink]="'/'">
+      <img
+        src="https://d2j6dbq0eux0bg.cloudfront.net/images/40749019/1803175281.jpg"
+      />
+    </button>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput type="text" formControlName="email" required />
+      </mat-form-field>
+      <br />
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password" required />
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit">Sign Up</button>
+
+      <div id="login">
+        <span>
+          Already have an account?
+          <button mat-button [routerLink]="'/account/settings'">Log In</button>
+        </span>
+      </div>
+    </form>
+  </section>
+</section>

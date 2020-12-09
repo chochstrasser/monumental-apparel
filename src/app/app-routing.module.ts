@@ -6,8 +6,10 @@ import { ProductComponent } from './product/product.component';
 import { AccountComponent } from './account/account.component';
 import { AccountBagComponent } from './account-bag/account-bag.component';
 import { AccountOrdersComponent } from './account-orders/account-orders.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
+  { path: 'account/register', component: RegisterComponent },
   {
     path: 'account/bag',
     component: AccountBagComponent,

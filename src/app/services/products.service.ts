@@ -62,6 +62,31 @@ export class ProductsService {
               'https://d2j6dbq0eux0bg.cloudfront.net/images/40749019/1812605571.jpg',
             name: 'Sonora model back',
           },
+          {
+            path:
+              'https://d2j6dbq0eux0bg.cloudfront.net/images/40749019/1812600736.jpg',
+            name: 'Sonora model front',
+          },
+          {
+            path:
+              'https://d2j6dbq0eux0bg.cloudfront.net/images/40749019/1801998769.jpg',
+            name: 'Sonora maroon back',
+          },
+          {
+            path:
+              'https://d2j6dbq0eux0bg.cloudfront.net/images/40749019/1802052264.jpg',
+            name: 'Sonora marron front',
+          },
+          {
+            path:
+              'https://d2j6dbq0eux0bg.cloudfront.net/images/40749019/1802004628.jpg',
+            name: 'Sonora berry back',
+          },
+          {
+            path:
+              'https://d2j6dbq0eux0bg.cloudfront.net/images/40749019/1802034431.jpg',
+            name: 'Sonora berry front',
+          },
         ]
       ),
     ];
