@@ -1,21 +1,22 @@
-export interface Product {
+export interface CartProduct {
   productID?: number;
   path?: string;
   name?: string;
   price?: number;
   image?: string;
   description?: string;
-  images?: Array<any>;
+  quantity?: number;
 }
-export class Product {
+
+export class CartProduct {
   constructor(
-    productID: number,
-    path: string,
-    name: string,
-    price: number,
-    image: string,
-    description: string,
-    images: Array<any>
+    productID?: number,
+    path?: string,
+    name?: string,
+    price?: number,
+    image?: string,
+    description?: string,
+    quantity?: number
   ) {
     this.productID = productID;
     this.path = path;
@@ -23,6 +24,6 @@ export class Product {
     this.price = price;
     this.image = image;
     this.description = description;
-    this.images = images;
+    this.quantity = quantity;
   }
 }

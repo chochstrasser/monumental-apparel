@@ -1,5 +1,11 @@
 <section>
   <div class="mat-display-1">Shopping Bag</div>
-  <p>Your shopping cart is empty</p>
-  <button mat-raised-button [routerLink]="'/'">Browse Store</button>
+
+  <div class="breadcrumb">
+    <button mat-flat-button [routerLink]="'/'">Store</button>
+    <span class="mat-caption">/</span>
+    <button mat-flat-button [routerLink]="'/account/settings'">Account</button>
+  </div>
+
+  <app-account-bag-table></app-account-bag-table>
 </section>
