@@ -24,6 +24,19 @@ export class AuthService {
     await this.auth.signOut();
   }
 
+  async register(email: string, password: string) {
+    const result = await this.auth.createUserWithEmailAndPassword(
+      email,
+      password
+    );
+    await this.sendEmailVerification();
+    this.updateUserData(result);
+  }
+
+  async forgotPassword(email: string) {
+    await this.auth.sendPasswordResetEmail(email);
+  }
+
   updateUserData(authUser: any) {
     this.user$ = {
       uid: authUser.user.uid,
@@ -37,7 +50,6 @@ export class AuthService {
   }
 
   getCurrentUser() {
-    // this.user$ = JSON.parse(localStorage.getItem('user') || '{}');
     return this.isAuthenticated() ? this.user$ : null;
   }
 

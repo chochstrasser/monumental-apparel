@@ -3,13 +3,10 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-account-bag',
   templateUrl: './account-bag.component.html',
-  styleUrls: ['./account-bag.component.scss']
+  styleUrls: ['./account-bag.component.scss'],
 })
 export class AccountBagComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

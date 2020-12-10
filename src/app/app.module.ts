@@ -29,6 +29,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -43,6 +45,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { ProductGalleryComponent } from './product-gallery/product-gallery.component';
 import { ProductComponent } from './product/product.component';
 import { RegisterComponent } from './register/register.component';
+import { AccountBagTableComponent } from './account-bag-table/account-bag-table.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +70,7 @@ import { RegisterComponent } from './register/register.component';
     ProductGalleryComponent,
     ProductComponent,
     RegisterComponent,
+    AccountBagTableComponent,
   ],
   imports: [
     BrowserModule,
@@ -85,6 +89,8 @@ import { RegisterComponent } from './register/register.component';
     MatSnackBarModule,
     MatRadioModule,
     MatTabsModule,
+    MatTableModule,
+    MatPaginatorModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
   ],

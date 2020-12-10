@@ -30,13 +30,23 @@ export class LoginComponent implements OnInit {
       this.loginForm.reset();
       window.location.reload();
     } catch (error) {
-      this.openSnackBar(error.message, 'close');
+      this.openSnackBar(error.message, 'close', 3000);
     }
   }
 
-  openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action, {
-      duration: 3000,
-    });
+  openSnackBar(message: string, action: string, duration?: number) {
+    this._snackBar.open(message, action, { duration });
+  }
+
+  async forgotPassword() {
+    try {
+      await this.authService.forgotPassword(this.loginForm.get('email')?.value);
+      this.openSnackBar(
+        'Password reset email sent, check your inbox.',
+        'close'
+      );
+    } catch (error) {
+      this.openSnackBar(error.message, 'close', 3000);
+    }
   }
 }

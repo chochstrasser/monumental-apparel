@@ -31,7 +31,8 @@ form {
   margin: 0 auto;
 }
 
-.mat-button#register {
+.mat-button#register,
+.mat-button#forgot-password {
   width: 100%;
   display: block;
   max-width: 20rem;

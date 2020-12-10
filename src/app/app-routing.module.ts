@@ -13,7 +13,6 @@ const routes: Routes = [
   {
     path: 'account/bag',
     component: AccountBagComponent,
-    canActivate: [AuthGuard],
   },
   {
     path: 'account/orders',

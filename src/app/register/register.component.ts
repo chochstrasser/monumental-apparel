@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -14,7 +15,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private router: Router
   ) {
     this.registerForm = this.formBuilder.group({
       email: '',
@@ -26,9 +28,9 @@ export class RegisterComponent implements OnInit {
 
   async onSubmit(userData: any) {
     try {
-      await this.authService.login(userData.email, userData.password);
+      await this.authService.register(userData.email, userData.password);
       this.registerForm.reset();
-      window.location.reload();
+      this.router.navigate(['/account/settings']);
     } catch (error) {
       this.openSnackBar(error.message, 'close');
     }
