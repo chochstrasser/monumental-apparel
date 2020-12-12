@@ -9,10 +9,18 @@
 
   <div *ngIf="isAuthenticated; then thenBlock; else elseBlock"></div>
   <ng-template #thenBlock>
-    <div>Name: {{ userData.displayName }}</div>
-    <div>Photo URL: {{ userData.photoURL }}</div>
-    <div>Phone: {{ userData.phoneNumber }}</div>
-    <div>Email: {{ userData.email }}</div>
+    <div>city: {{ userData.city }}</div>
+    <div>country: {{ userData.country }}</div>
+    <div>countryName: {{ userData.countryName }}</div>
+    <div>email: {{ userData.email }}</div>
+    <div>emailVerified: {{ userData.emailVerified }}</div>
+    <div>name: {{ userData.name }}</div>
+    <div>phone: {{ userData.phone }}</div>
+    <div>photoURL: {{ userData.photoURL }}</div>
+    <div>postalCode: {{ userData.postalCode }}</div>
+    <div>state: {{ userData.state }}</div>
+    <div>street: {{ userData.street }}</div>
+    <div>uid: {{ userData.uid }}</div>
 
     <button mat-flat-button *ngIf="!isEmailVerified" (click)="verifyEmail()">
       Verify Email

@@ -9,9 +9,10 @@ import { AuthService } from '../services/auth.service';
 })
 export class AccountComponent implements OnInit {
   isAuthenticated: boolean = false;
+  isEmailVerified: boolean = true;
+  isLoggedIn: boolean = false;
   loading: boolean = true;
   userData: any;
-  isEmailVerified: boolean = true;
 
   constructor(
     private authService: AuthService,
@@ -20,12 +21,14 @@ export class AccountComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this.isAuthenticated = this.authService.isAuthenticated();
+    this.isAuthenticated = this.authService.isAuthenticated;
+    this.isLoggedIn = this.authService.isLoggedIn;
 
     if (this.isAuthenticated) {
-      this.isEmailVerified = this.authService.isEmailVerified();
-      this.userData = this.authService.getCurrentUser();
+      this.isEmailVerified = this.authService.isEmailVerified;
+      this.userData = this.authService.getCurrentUser;
     }
+
     window.scroll(0, 0);
     this.loading = false;
   }
