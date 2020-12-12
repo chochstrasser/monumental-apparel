@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -7,7 +8,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 export class AuthService {
   user$: any;
 
-  constructor(private auth: AngularFireAuth) {}
+  constructor(private auth: AngularFireAuth, private db: AngularFirestore) {}
 
   async sendEmailVerification() {
     await (await this.auth.currentUser)?.sendEmailVerification();
@@ -15,7 +16,7 @@ export class AuthService {
 
   async login(email: string, password: string) {
     const result = await this.auth.signInWithEmailAndPassword(email, password);
-    this.updateUserData(result);
+    await this.updateUserData(result);
   }
 
   async logout() {
@@ -29,35 +30,59 @@ export class AuthService {
       email,
       password
     );
+    await this.createCustomerDocument(result);
     await this.sendEmailVerification();
-    this.updateUserData(result);
+    await this.updateUserData(result);
+  }
+
+  async createCustomerDocument(authUser: any) {
+    const customerRef = this.db.collection('customers').doc(authUser.user.uid);
+    await customerRef.set({
+      name: 'Testing Name',
+    });
   }
 
   async forgotPassword(email: string) {
     await this.auth.sendPasswordResetEmail(email);
   }
 
-  updateUserData(authUser: any) {
-    this.user$ = {
-      uid: authUser.user.uid,
-      email: authUser.user.email,
-      displayName: authUser.user.displayName,
-      photoURL: authUser.user.photoURL,
-      phoneNumber: authUser.user.phoneNumber,
-      emailVerified: authUser.user.emailVerified,
-    };
-    localStorage.setItem('user', JSON.stringify(this.user$));
+  async updateUserData(authUser: any) {
+    const customer = await this.db
+      .collection('customers')
+      .doc(authUser.user.uid)
+      .get()
+      .toPromise();
+
+    if (customer.exists) {
+      const user = Object.assign(customer.data(), {
+        uid: authUser.user.uid,
+        photoURL: authUser.user.photoURL,
+        emailVerified: authUser.user.emailVerified,
+      });
+      localStorage.setItem('user', JSON.stringify(user));
+    } else {
+      console.log('No such document!');
+    }
   }
 
-  getCurrentUser() {
-    return this.isAuthenticated() ? this.user$ : null;
+  get getCurrentUser(): any {
+    return this.isAuthenticated
+      ? JSON.parse(localStorage.getItem('user') || '{}')
+      : null;
   }
 
-  isEmailVerified() {
-    return this.isAuthenticated() ? this.user$.emailVerified : false;
+  get isEmailVerified(): boolean {
+    return this.isAuthenticated ? this.user$.emailVerified : false;
   }
 
-  isAuthenticated(): any {
+  get isLoggedIn(): boolean {
+    this.user$ = JSON.parse(localStorage.getItem('user') || '{}');
+    return this.user$ !== null && this.user$.emailVerified !== false
+      ? true
+      : false;
+  }
+
+  get isAuthenticated(): boolean {
     this.user$ = JSON.parse(localStorage.getItem('user') || '{}');
     return !!this.user$.uid;
   }
