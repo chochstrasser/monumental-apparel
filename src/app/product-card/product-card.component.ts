@@ -15,6 +15,23 @@ export class ProductCardComponent implements OnInit {
   ngOnInit(): void {
     this.productService.getProducts().subscribe((p) => {
       this.products = p;
+      this.sort();
     });
+  }
+
+  sort() {
+    this.products = this.products.sort((a, b) => this.compare(b.name, a.name));
+  }
+
+  compare(a: string | undefined, b: string | undefined) {
+    const aCase = `${a}`.toUpperCase();
+    const bCase = `${b}`.toUpperCase();
+    if (aCase < bCase) return -1;
+    if (aCase > bCase) return 1;
+    return 0;
+  }
+
+  getImage(product: any, index: number) {
+    return (product.images || [])[index].path;
   }
 }

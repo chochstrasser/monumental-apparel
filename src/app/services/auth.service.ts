@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore } from '@angular/fire/firestore';
+import {
+  AngularFirestore,
+  AngularFirestoreDocument,
+} from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +19,7 @@ export class AuthService {
 
   async login(email: string, password: string) {
     const result = await this.auth.signInWithEmailAndPassword(email, password);
-    await this.updateUserData(result);
+    await this.updateUserData(result.user);
   }
 
   async logout() {
@@ -30,38 +33,38 @@ export class AuthService {
       email,
       password
     );
-    await this.createCustomerDocument(result);
     await this.sendEmailVerification();
-    await this.updateUserData(result);
+    await this.updateUserData(result.user);
   }
 
-  async createCustomerDocument(authUser: any) {
-    const customerRef = this.db.collection('customers').doc(authUser.user.uid);
-    await customerRef.set({
-      name: 'Testing Name',
-    });
+  async createCustomerDocument(
+    cusRef: AngularFirestoreDocument<any>,
+    authUser: any
+  ) {
+    const data = {
+      uid: authUser.uid,
+      email: authUser.email,
+      photoURL: authUser.photoURL,
+      emailVerified: authUser.emailVerified,
+      roles: { shopper: true },
+    };
+    await cusRef.set(data, { merge: true });
   }
 
-  async forgotPassword(email: string) {
+  public async forgotPassword(email: string) {
     await this.auth.sendPasswordResetEmail(email);
   }
 
   async updateUserData(authUser: any) {
-    const customer = await this.db
+    const cusRef: AngularFirestoreDocument<any> = this.db
       .collection('customers')
-      .doc(authUser.user.uid)
-      .get()
-      .toPromise();
-
+      .doc(authUser.uid);
+    await this.createCustomerDocument(cusRef, authUser);
+    const customer = await cusRef.get().toPromise();
     if (customer.exists) {
-      const user = Object.assign(customer.data(), {
-        uid: authUser.user.uid,
-        photoURL: authUser.user.photoURL,
-        emailVerified: authUser.user.emailVerified,
-      });
-      localStorage.setItem('user', JSON.stringify(user));
-    } else {
-      console.log('No such document!');
+      const data = customer.data();
+      localStorage.setItem('user', JSON.stringify(data));
+      this.user$ = JSON.parse(localStorage.getItem('user') || '{}');
     }
   }
 
@@ -85,5 +88,14 @@ export class AuthService {
   get isAuthenticated(): boolean {
     this.user$ = JSON.parse(localStorage.getItem('user') || '{}');
     return !!this.user$.uid;
+  }
+
+  get isAdmin(): boolean {
+    this.user$ = JSON.parse(localStorage.getItem('user') || '{}');
+    return this.user$.roles?.admin;
+  }
+
+  currentUser() {
+    return this.auth.authState;
   }
 }
