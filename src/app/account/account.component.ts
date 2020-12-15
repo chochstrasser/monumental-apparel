@@ -26,7 +26,7 @@ export class AccountComponent implements OnInit {
 
     if (this.isAuthenticated) {
       this.isEmailVerified = this.authService.isEmailVerified;
-      this.userData = this.authService.getCurrentUser;
+      this.userData = this.authService.getLocalUserData;
     }
 
     window.scroll(0, 0);

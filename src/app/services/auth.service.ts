@@ -13,22 +13,22 @@ export class AuthService {
 
   constructor(private auth: AngularFireAuth, private db: AngularFirestore) {}
 
-  async sendEmailVerification() {
+  public async sendEmailVerification() {
     await (await this.auth.currentUser)?.sendEmailVerification();
   }
 
-  async login(email: string, password: string) {
+  public async login(email: string, password: string) {
     const result = await this.auth.signInWithEmailAndPassword(email, password);
-    await this.updateUserData(result.user);
+    await this.setUserData(result.user);
   }
 
-  async logout() {
+  public async logout() {
     this.user$ = null;
     localStorage.removeItem('user');
     await this.auth.signOut();
   }
 
-  async register(email: string, password: string) {
+  public async register(email: string, password: string) {
     const result = await this.auth.createUserWithEmailAndPassword(
       email,
       password
@@ -37,7 +37,7 @@ export class AuthService {
     await this.updateUserData(result.user);
   }
 
-  async createCustomerDocument(
+  private async createCustomerDocument(
     cusRef: AngularFirestoreDocument<any>,
     authUser: any
   ) {
@@ -51,11 +51,23 @@ export class AuthService {
     await cusRef.set(data, { merge: true });
   }
 
+  public async setUserData(authUser: any) {
+    const cusRef: AngularFirestoreDocument<any> = this.db
+      .collection('customers')
+      .doc(authUser.uid);
+    const customer = await cusRef.get().toPromise();
+    if (customer.exists) {
+      const data = customer.data();
+      localStorage.setItem('user', JSON.stringify(data));
+      this.user$ = JSON.parse(localStorage.getItem('user') || '{}');
+    }
+  }
+
   public async forgotPassword(email: string) {
     await this.auth.sendPasswordResetEmail(email);
   }
 
-  async updateUserData(authUser: any) {
+  private async updateUserData(authUser: any) {
     const cusRef: AngularFirestoreDocument<any> = this.db
       .collection('customers')
       .doc(authUser.uid);
@@ -68,7 +80,11 @@ export class AuthService {
     }
   }
 
-  get getCurrentUser(): any {
+  get getDBCurrentUserData(): any {
+    return this.auth.authState;
+  }
+
+  get getLocalUserData(): any {
     return this.isAuthenticated
       ? JSON.parse(localStorage.getItem('user') || '{}')
       : null;
@@ -93,9 +109,5 @@ export class AuthService {
   get isAdmin(): boolean {
     this.user$ = JSON.parse(localStorage.getItem('user') || '{}');
     return this.user$.roles?.admin;
-  }
-
-  currentUser() {
-    return this.auth.authState;
   }
 }
