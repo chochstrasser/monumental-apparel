@@ -1,7 +1,11 @@
 <div id="store" class="flex-cards">
-  <mat-card *ngFor="let product of products; index as i">
+  <mat-card
+    *ngFor="let product of products; index as i"
+    (mouseover)="product.image = getImage(product, 1)"
+    (mouseleave)="product.image = getImage(product, 0)"
+  >
     <button mat-button [routerLink]="['/product', product.path]">
-      <img mat-card-image src="{{ product.image }}" alt="{{ product.name }}" />
+      <img mat-card-image [src]="product.image" alt="{{ product.name }}" />
       <mat-card-actions>
         <div class="card-title">{{ product.name }}</div>
         <div>${{ product.price }}</div>
