@@ -30,8 +30,4 @@ export class ProductCardComponent implements OnInit {
     if (aCase > bCase) return 1;
     return 0;
   }
-
-  getImage(product: any, index: number) {
-    return (product.images || [])[index].path;
-  }
 }
