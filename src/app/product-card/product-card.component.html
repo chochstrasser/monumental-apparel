@@ -2,11 +2,17 @@
   <mat-card *ngFor="let product of products; index as i">
     <button mat-button [routerLink]="['/product', product.path]">
       <div class="image-wrapper">
+        <div id="overlay">
+          <button mat-flat-button [routerLink]="['/product', product.path]">
+            Buy Now
+          </button>
+        </div>
         <img mat-card-image [src]="product.image" alt="{{ product.name }}" />
         <img
           mat-card-image
           class="top-img"
-          [src]="(product?.images || [])[1]?.path"
+          *ngIf="(product.images || []).length > 1"
+          [src]="(product.images || [])[1]?.path"
           alt="{{ product.name }}"
         />
       </div>

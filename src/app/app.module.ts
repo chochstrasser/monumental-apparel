@@ -31,6 +31,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -46,6 +47,7 @@ import { ProductGalleryComponent } from './product-gallery/product-gallery.compo
 import { ProductComponent } from './product/product.component';
 import { RegisterComponent } from './register/register.component';
 import { AccountBagTableComponent } from './account-bag-table/account-bag-table.component';
+import { ProductSortComponent } from './product-sort/product-sort.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +73,7 @@ import { AccountBagTableComponent } from './account-bag-table/account-bag-table.
     ProductComponent,
     RegisterComponent,
     AccountBagTableComponent,
+    ProductSortComponent,
   ],
   imports: [
     BrowserModule,
@@ -91,6 +94,7 @@ import { AccountBagTableComponent } from './account-bag-table/account-bag-table.
     MatTabsModule,
     MatTableModule,
     MatPaginatorModule,
+    MatSelectModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
   ],
