@@ -11,11 +11,19 @@ export class ProductsService {
   product: Product;
 
   constructor(private db: AngularFirestore) {
-    this.products = db.collection('/products').valueChanges();
+    this.products = this.db.collection('/products').valueChanges();
     this.product = {};
   }
 
-  getProducts() {
+  get getProducts() {
     return this.products;
+  }
+
+  public compare(a: string | undefined, b: string | undefined) {
+    const aCase = `${a}`.toUpperCase();
+    const bCase = `${b}`.toUpperCase();
+    if (aCase < bCase) return -1;
+    if (aCase > bCase) return 1;
+    return 0;
   }
 }

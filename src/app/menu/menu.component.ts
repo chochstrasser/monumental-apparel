@@ -11,7 +11,7 @@ export class MenuComponent implements OnInit {
   ngOnInit(): void {}
 
   scrollTo(id: string) {
-    const yOffset = -160;
+    const yOffset = -200;
     const element = document.getElementById(id);
     const top = element?.getBoundingClientRect().top || 0;
     const y = top + window.pageYOffset + yOffset;

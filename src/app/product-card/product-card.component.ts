@@ -13,21 +13,10 @@ export class ProductCardComponent implements OnInit {
   constructor(private productService: ProductsService) {}
 
   ngOnInit(): void {
-    this.productService.getProducts().subscribe((p) => {
-      this.products = p;
-      this.sort();
+    this.productService.getProducts.subscribe((p) => {
+      this.products = p.sort((a, b) =>
+        this.productService.compare(b.name, a.name)
+      );
     });
-  }
-
-  sort() {
-    this.products = this.products.sort((a, b) => this.compare(b.name, a.name));
-  }
-
-  compare(a: string | undefined, b: string | undefined) {
-    const aCase = `${a}`.toUpperCase();
-    const bCase = `${b}`.toUpperCase();
-    if (aCase < bCase) return -1;
-    if (aCase > bCase) return 1;
-    return 0;
   }
 }
