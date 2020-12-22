@@ -60,7 +60,7 @@ export class AccountBagTableComponent implements AfterViewInit {
       .reduce((acc, value) => (acc || 0) + (value || 0), 0);
   }
 
-  getTotalQuantity() {
+  get getTotalQuantity(): number {
     return this.cartService
       .getProducts()
       .map((t) => t.quantity)
