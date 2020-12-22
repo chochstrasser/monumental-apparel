@@ -41,7 +41,32 @@
 
   <div class="mat-body">In stock</div>
 
-  <button mat-raised-button color="primary">Add to bag</button>
+  <div class="button-group">
+    <button
+      *ngIf="!clickedAdd"
+      mat-raised-button
+      color="dark"
+      (click)="addToBag()"
+      [class.check]="checked"
+      [disabled]="checked"
+    >
+      <span>Add to cart</span>
+    </button>
+    <div *ngIf="clickedAdd">
+      <button
+        mat-raised-button
+        color="light"
+        (click)="addToBag()"
+        [class.check]="checked"
+        [disabled]="checked"
+      >
+        <span>Add more</span>
+      </button>
+      <button mat-raised-button color="dark" [routerLink]="'/account/bag'">
+        Go to checkout
+      </button>
+    </div>
+  </div>
 
   <div class="mat-body-2">Product Details</div>
   <p>{{ product.description }}</p>
