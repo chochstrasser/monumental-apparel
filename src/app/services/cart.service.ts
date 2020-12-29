@@ -9,10 +9,19 @@ export class CartService {
 
   addProductToCart(product: Product) {
     this.cart$ = JSON.parse(localStorage.getItem('cart') || '[]');
-    const found = this.cart$.find((p) => p.productID === product.productID);
+    const found = this.cart$.find(
+      (p) =>
+        p.productID === product.productID &&
+        p.size === product.size &&
+        p.color === product.color
+    );
     if (found) {
       this.cart$ = this.cart$.map((p) => {
-        if (p.productID === product.productID) {
+        if (
+          p.productID === product.productID &&
+          p.size === product.size &&
+          p.color === product.color
+        ) {
           return { ...p, quantity: (p.quantity || 0) + 1 };
         } else return p;
       });

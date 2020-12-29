@@ -29,7 +29,7 @@ import { CartProduct } from '../modals/cart';
 })
 export class AccountBagTableComponent implements AfterViewInit {
   dataSource: MatTableDataSource<CartProduct>;
-  columnsToDisplay = ['name', 'quantity', 'price'];
+  columnsToDisplay = ['name', 'size', 'color', 'quantity', 'price'];
   expandedElement: any;
 
   @ViewChild(MatPaginator) paginator: any;

@@ -4,6 +4,8 @@
 
 export const environment = {
   production: false,
+  stripeKey:
+    'pk_test_51I3YizDk4ooX2aqO87r1Y10zarMASLuowBePTpyEaGUhFN35xe4xjaa2Bj9QMNtM3N0bB5WS4w3SkqQlzWbFub8T00AYvL55WD',
   firebase: {
     apiKey: 'AIzaSyAFJnTG5xYYJlQbsyCrDisXOtfIRc3agJ4',
     authDomain: 'monumental-apperal.firebaseapp.com',

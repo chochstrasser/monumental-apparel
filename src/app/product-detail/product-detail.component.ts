@@ -42,12 +42,19 @@ export class ProductDetailComponent implements OnInit {
     if (found) {
       this.clickedAdd = true;
     }
-    console.log(this.product);
   }
 
   addToBag() {
+    const payload = {
+      ...this.product,
+      size: this.selectedSize,
+      color: this.selectedColor,
+    };
+
+    // TODO: check if size and color available
+
     this.checked = true;
-    this.cartService.addProductToCart(this.product);
+    this.cartService.addProductToCart(payload);
     setTimeout(() => {
       this.checked = false;
       this.clickedAdd = true;
