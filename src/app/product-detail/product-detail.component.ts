@@ -11,10 +11,10 @@ import { ProductsService } from '../services/products.service';
 })
 export class ProductDetailComponent implements OnInit {
   product: Product = {};
-  selectedSize: string = 'S';
-  sizes: string[] = ['S', 'M', 'L', 'XL'];
-  selectedColor: string = 'Navy';
-  colors: string[] = ['Navy', 'Seafoam'];
+  selectedSize: string = '';
+  selectedColor: string = '';
+  sizes: string[] | undefined;
+  colors: string[] | undefined;
   checked: boolean = false;
   clickedAdd: boolean = false;
 
@@ -30,6 +30,10 @@ export class ProductDetailComponent implements OnInit {
         this.product =
           p.find((product) => product.path === params.get('product')) || {};
         this.initializeButtons();
+        this.sizes = this.product.sizes;
+        this.colors = this.product.colors;
+        this.selectedSize = (this.sizes || [])[0];
+        this.selectedColor = (this.colors || [])[0];
       });
     });
   }
@@ -42,12 +46,17 @@ export class ProductDetailComponent implements OnInit {
     if (found) {
       this.clickedAdd = true;
     }
-    console.log(this.product);
   }
 
   addToBag() {
+    const payload = {
+      ...this.product,
+      size: this.selectedSize,
+      color: this.selectedColor,
+    };
+
     this.checked = true;
-    this.cartService.addProductToCart(this.product);
+    this.cartService.addProductToCart(payload);
     setTimeout(() => {
       this.checked = false;
       this.clickedAdd = true;

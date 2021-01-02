@@ -35,6 +35,7 @@ import { MatSelectModule } from '@angular/material/select';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireFunctionsModule } from '@angular/fire/functions';
 
 import { AuthService } from './services/auth.service';
 import { AccountOrdersComponent } from './account-orders/account-orders.component';
@@ -97,6 +98,7 @@ import { ProductSortComponent } from './product-sort/product-sort.component';
     MatSelectModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
+    AngularFireFunctionsModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],

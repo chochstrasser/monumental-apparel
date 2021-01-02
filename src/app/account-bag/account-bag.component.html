@@ -8,4 +8,13 @@
   </div>
 
   <app-account-bag-table></app-account-bag-table>
+
+  <div>Subtotal</div>
+
+  <button mat-raised-button color="primary" (click)="checkout($event)">
+    Checkout
+  </button>
+
+  <div *ngIf="loading">Loading...</div>
+  <pre *ngIf="confirmation">{{ confirmation | json }}</pre>
 </section>
