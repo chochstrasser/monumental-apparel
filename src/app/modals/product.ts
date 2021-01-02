@@ -9,4 +9,7 @@ export interface Product {
   availability?: number;
   size?: string;
   color?: string;
+  alt?: any;
+  colors?: Array<string>;
+  sizes?: Array<string>;
 }

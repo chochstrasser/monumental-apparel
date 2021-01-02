@@ -56,7 +56,7 @@ export class AccountBagTableComponent implements AfterViewInit {
   getTotalCost() {
     return this.cartService
       .getProducts()
-      .map((t) => t.price)
+      .map((t) => t.price * t.quantity)
       .reduce((acc, value) => (acc || 0) + (value || 0), 0);
   }
 
