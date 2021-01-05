@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatRadioChange } from '@angular/material/radio';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../modals/product';
 import { CartService } from '../services/cart.service';
@@ -17,6 +18,7 @@ export class ProductDetailComponent implements OnInit {
   colors: string[] | undefined;
   checked: boolean = false;
   clickedAdd: boolean = false;
+  outOfStock: boolean = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -34,8 +36,20 @@ export class ProductDetailComponent implements OnInit {
         this.colors = this.product.colors;
         this.selectedSize = (this.sizes || [])[0];
         this.selectedColor = (this.colors || [])[0];
+        this.outOfStock =
+          this.product.alt[this.selectedSize][this.selectedColor].quantity < 1;
       });
     });
+  }
+
+  sizeChange($event: MatRadioChange): void {
+    this.outOfStock =
+      this.product.alt[$event.value][this.selectedColor].quantity < 1;
+  }
+
+  colorChange($event: MatRadioChange): void {
+    this.outOfStock =
+      this.product.alt[this.selectedSize][$event.value].quantity < 1;
   }
 
   initializeButtons(): void {

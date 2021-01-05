@@ -13,6 +13,7 @@
     class="size-radio-group"
     [(ngModel)]="selectedSize"
     color="primary"
+    (change)="sizeChange($event)"
   >
     <mat-radio-button
       class="size-radio-button"
@@ -29,6 +30,7 @@
     class="color-radio-group"
     [(ngModel)]="selectedColor"
     color="primary"
+    (change)="colorChange($event)"
   >
     <mat-radio-button
       class="color-radio-button"
@@ -39,11 +41,11 @@
     </mat-radio-button>
   </mat-radio-group>
 
-  <div class="mat-body">In stock</div>
+  <div *ngIf="outOfStock" class="mat-body-strong">Out Of Stock</div>
 
   <div class="button-group">
     <button
-      *ngIf="!clickedAdd"
+      *ngIf="!clickedAdd && !outOfStock"
       mat-raised-button
       color="dark"
       (click)="addToBag()"
@@ -54,6 +56,7 @@
     </button>
     <div *ngIf="clickedAdd">
       <button
+        *ngIf="!outOfStock"
         mat-raised-button
         color="light"
         (click)="addToBag()"

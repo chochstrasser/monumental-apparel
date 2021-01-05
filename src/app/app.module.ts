@@ -49,6 +49,8 @@ import { ProductComponent } from './product/product.component';
 import { RegisterComponent } from './register/register.component';
 import { AccountBagTableComponent } from './account-bag-table/account-bag-table.component';
 import { ProductSortComponent } from './product-sort/product-sort.component';
+import { SuccessComponent } from './success/success.component';
+import { CancelComponent } from './cancel/cancel.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +77,8 @@ import { ProductSortComponent } from './product-sort/product-sort.component';
     RegisterComponent,
     AccountBagTableComponent,
     ProductSortComponent,
+    SuccessComponent,
+    CancelComponent,
   ],
   imports: [
     BrowserModule,
