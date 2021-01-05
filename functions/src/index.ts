@@ -15,8 +15,8 @@ export const createCheckoutSession = functions.https.onCall(
       payment_method_types: ['card'],
       line_items: data,
       mode: 'payment',
-      success_url: 'http://localhost:4200',
-      cancel_url: 'http://localhost:4200',
+      success_url: 'http://localhost:4200/success',
+      cancel_url: 'http://localhost:4200/cancel',
     });
     return session.id;
   }
